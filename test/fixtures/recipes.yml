@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ingredients: MyString
+  prep_time: 1
+  directions: MyString
+  title: MyString
+  chef: MyString
+  image: MyString
+
+two:
+  ingredients: MyString
+  prep_time: 1
+  directions: MyString
+  title: MyString
+  chef: MyString
+  image: MyString
