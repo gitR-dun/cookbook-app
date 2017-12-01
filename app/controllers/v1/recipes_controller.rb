@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class V1::RecipesController < ApplicationController
   def show_recipe
     # grab a recipe from the db
     the_recipe = Recipe.last
@@ -14,3 +14,10 @@ class RecipesController < ApplicationController
     }
   end
 end
+
+
+
+# namespace route
+# make v1 folder
+# put controller in v1 folder
+# add namespace to class name

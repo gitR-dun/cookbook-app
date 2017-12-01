@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  get "/the_recipe" => 'recipes#show_recipe'
+  namespace :v1 do
+    get "/the_recipe" => 'recipes#show_recipe'
+  end
+
+  namespace :v2 do
+    get "/the_recipe" => 'recipes#show_recipe'
+  end
 end
