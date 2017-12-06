@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   namespace :v2 do
-    get "/the_recipe" => 'recipes#show_recipe'
+    # shows all the recipes
+    get '/recipes' => 'recipes#index'
   end
 end
