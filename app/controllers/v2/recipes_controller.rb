@@ -29,6 +29,21 @@ class V2::RecipesController < ApplicationController
     render json: recipe.as_json
   end
 
+  def update
+    # grab a recipe from the db
+    the_id = params['id']
+    recipe = Recipe.find_by(id: the_id)
+    # actually update it
+    recipe.chef = params['chef']
+    recipe.ingredients = params['ingredients']
+    recipe.prep_time = params['prep_time']
+    recipe.directions = params['directions']
+    recipe.image = params['image']
+    recipe.title = params['title']
+    recipe.save
+    render json: recipe.as_json
+  end
+
   # def show_recipe
   #   # grab a recipe from the db
   #   the_recipe = Recipe.last

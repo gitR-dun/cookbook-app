@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get '/recipes/:id' => 'recipes#show'
     # create action, make a new recipe, doesn't need id wildcard because it hasn't been made yet
     post '/recipes' => 'recipes#create'
+    # update an item currently in the db
+    patch '/recipes/:id' => 'recipes#update'
   end
 end
