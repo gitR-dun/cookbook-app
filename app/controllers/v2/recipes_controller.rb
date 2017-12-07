@@ -34,28 +34,23 @@ class V2::RecipesController < ApplicationController
     the_id = params['id']
     recipe = Recipe.find_by(id: the_id)
     # actually update it
-    recipe.chef = params['chef']
-    recipe.ingredients = params['ingredients']
-    recipe.prep_time = params['prep_time']
-    recipe.directions = params['directions']
-    recipe.image = params['image']
-    recipe.title = params['title']
+    recipe.chef = params['chef'] || recipe.chef
+    recipe.ingredients = params['ingredients'] || recipe.ingredients
+    recipe.prep_time = params['prep_time'] || recipe.prep_time
+    recipe.directions = params['directions'] || recipe.directions
+    recipe.image = params['image'] || recipe.image
+    recipe.title = params['title'] || recipe.title
+
     recipe.save
     render json: recipe.as_json
   end
 
-  # def show_recipe
-  #   # grab a recipe from the db
-  #   the_recipe = Recipe.last
-
-  #   # show the user that recipe
-  #   render json: {
-  #     title: the_recipe.title,
-  #     chef: the_recipe.chef,
-  #     ingredients: the_recipe.ingredients,
-  #     prepTime: the_recipe.prep_time,
-  #     image: the_recipe.image,
-  #     directions: the_recipe.directions
-  #   }
-  # end
+  def destroy
+    # find a particular recipe in the db
+    the_id = params['id']
+    recipe = Recipe.find_by(id: the_id)
+    # destroy it
+    recipe.destroy
+    render json: {message: "You deleted a recipe"}
+  end
 end

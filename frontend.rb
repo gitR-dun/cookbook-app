@@ -10,6 +10,7 @@ p "[1] see all the recipes"
 p "[2] see a particular recipe"
 p "[3] make a new recipe"
 p "[4] edit new recipe"
+p "[5] Destroy a recipe"
 
 user_input = gets.chomp
 
@@ -33,12 +34,18 @@ elsif user_input == '3'
   p "let's make a new recipe!!!"
   # make a new recipe in the db
   # ask for some user input
+  p "tell me what the title is"
+  the_params['title'] = gets.chomp
   p "tell me what the chef's name is"
   the_params['chef'] = gets.chomp
   p "tell me what the ingredients are"
   the_params['ingredients'] = gets.chomp
   p "tell me what the prep time is"
   the_params['prep_time'] = gets.chomp.to_i
+  p "tell me what the image is"
+  the_params['image'] = gets.chomp
+  p "tell me what the directions is"
+  the_params['directions'] = gets.chomp
   # take that user input and save it as a new recipe
   response = Unirest.post("#{base_url}/recipes", parameters: the_params)
   pp response.body
@@ -53,14 +60,31 @@ elsif user_input == '4'
   pp recipe
   # make a new recipe in the db
   # ask for some user input
+    p "tell me what the title is. It is currently #{recipe['title']}"
+  the_params['title'] = gets.chomp
   p "tell me what the chef's name is. It is currently #{recipe['chef']}"
   the_params['chef'] = gets.chomp
   p "tell me what the ingredients are.  It is currently #{recipe['ingredients']}"
   the_params['ingredients'] = gets.chomp
   p "tell me what the prep time is  It is currently #{recipe['prep_time']}"
-  the_params['prep_time'] = gets.chomp.to_i
+  the_params['prep_time'] = gets.chomp
+  p "tell me what the directions is  It is currently #{recipe['directions']}"
+  the_params['directions'] = gets.chomp
+  p "tell me what the image is  It is currently #{recipe['image']}"
+  the_params['image'] = gets.chomp
+  # if one of the values is an empty string, delete it
+  the_params.delete_if {|key, value| value.empty?}
   # which recipe should I update?
   response = Unirest.patch("#{base_url}/recipes/#{recipe_id}", parameters: the_params)
+  pp response.body
+elsif user_input == '5'
+  # ask the user which recipe they want to delete
+  p "which recipe would you like to delete"
+  recipe_id = gets.chomp
+  # delete that recipe
+  # make an http request to my API
+  response = Unirest.delete("#{base_url}/recipes/#{recipe_id}")
+
   pp response.body
 end
 
