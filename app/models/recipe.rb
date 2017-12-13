@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   # this is where ALL the methods for the recipe class go
   def as_json
     {
+      id: id,
       title: title,
       chef: chef,
       ingredients: ingredients_list,

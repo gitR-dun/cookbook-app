@@ -1,7 +1,13 @@
 class V2::RecipesController < ApplicationController
   def index
     # get all the recipes from my db
-    recipes = Recipe.all
+    # sort recipes by id
+    # filter the recipes based on a keyword
+    #  if the keyword is 'sandwich' I want to show all recipes that are sandwiches
+    # how to get user input
+    the_search_term = params[:search_term]
+    # p the_search_term
+    recipes = Recipe.order(:id => :asc).where("title LIKE ?", "%#{the_search_term}%")
     # show the user all the recipes in my db
     render json: recipes.as_json
   end

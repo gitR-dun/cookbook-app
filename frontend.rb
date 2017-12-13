@@ -7,6 +7,7 @@ system "clear"
 p "Welcome to my cookbook"
 p "choose an option"
 p "[1] see all the recipes"
+p "[1.1] Search recipes"
 p "[2] see a particular recipe"
 p "[3] make a new recipe"
 p "[4] edit new recipe"
@@ -20,6 +21,13 @@ user_input = gets.chomp
 if user_input == '1'
   # show all the recipes
   response = Unirest.get("#{base_url}/recipes")
+  pp response.body
+elsif user_input == '1.1'
+  # ask the user for some input
+  p "What would you like to search for?"
+  search_input = gets.chomp
+  # send that input in the params hash in a Unirest call
+  response = Unirest.get("http://localhost:3000/v2/recipes", parameters: {search_term: search_input})
   pp response.body
 elsif user_input == '2'
   # get a particular recipe
