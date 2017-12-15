@@ -12,6 +12,7 @@ p "[2] see a particular recipe"
 p "[3] make a new recipe"
 p "[4] edit new recipe"
 p "[5] Destroy a recipe"
+p "[6] Sign up"
 
 user_input = gets.chomp
 
@@ -94,6 +95,23 @@ elsif user_input == '5'
   response = Unirest.delete("#{base_url}/recipes/#{recipe_id}")
 
   pp response.body
+elsif user_input == '6'
+  # get user data
+  the_params = {}
+  p "enter your username"
+  the_params['name'] = gets.chomp
+  p "enter your email"
+  the_params['email'] = gets.chomp
+  p "enter your password"
+  the_params['password'] = gets.chomp
+  p "please confirm your password"
+  the_params['password_confirmation'] = gets.chomp
+
+  response = Unirest.post("localhost:3000/v2/users", parameters: the_params)
+  pp response.body
+
+  # make a post request to '/users'
+  #  print out the response
 end
 
 
