@@ -23,12 +23,12 @@ class V2::RecipesController < ApplicationController
 
   def create
     recipe = Recipe.new(
-       chef: params['chef'],
-       ingredients: params['ingredients'],
-       title: params['title'],
-       prep_time: params['prep_time'],
-       directions: params['directions'],
-       image: params['image'],
+       chef: params[:chef],
+       ingredients: params[:ingredients],
+       title: params[:title],
+       prep_time: params[:prep_time],
+       directions: params[:directions],
+       image: params[:image],
        user_id: current_user.id
      )
     recipe.save
@@ -41,12 +41,12 @@ class V2::RecipesController < ApplicationController
     the_id = params['id']
     recipe = Recipe.find_by(id: the_id)
     # actually update it
-    recipe.chef = params['chef'] || recipe.chef
-    recipe.ingredients = params['ingredients'] || recipe.ingredients
-    recipe.prep_time = params['prep_time'] || recipe.prep_time
-    recipe.directions = params['directions'] || recipe.directions
-    recipe.image = params['image'] || recipe.image
-    recipe.title = params['title'] || recipe.title
+    recipe.chef = params[:chef] || recipe.chef
+    recipe.ingredients = params[:ingredients] || recipe.ingredients
+    recipe.prep_time = params[:prep_time] || recipe.prep_time
+    recipe.directions = params[:directions] || recipe.directions
+    recipe.image = params[:image] || recipe.image
+    recipe.title = params[:title] || recipe.title
 
     recipe.save
     render json: recipe.as_json
@@ -54,7 +54,7 @@ class V2::RecipesController < ApplicationController
 
   def destroy
     # find a particular recipe in the db
-    the_id = params['id']
+    the_id = params[:id]
     recipe = Recipe.find_by(id: the_id)
     # destroy it
     recipe.destroy
