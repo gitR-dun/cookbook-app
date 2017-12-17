@@ -13,6 +13,9 @@ p "[3] make a new recipe"
 p "[4] edit new recipe"
 p "[5] Destroy a recipe"
 p "[6] Sign up"
+p "[7] Log in"
+p "[8] Log out"
+
 
 user_input = gets.chomp
 
@@ -112,7 +115,29 @@ elsif user_input == '6'
 
   # make a post request to '/users'
   #  print out the response
+elsif user_input == '7'
+  p "type in your email"
+  user_email = gets.chomp
+  p "type in your password"
+  user_password = gets.chomp
+  response = Unirest.post(
+  "http://localhost:3000/user_token",
+  parameters: {
+    auth: {
+      email: user_email,
+      password: user_password
+    }
+  }
+)
+
+
+  jwt = response.body["jwt"]
+  Unirest.default_header("Authorization", "Bearer #{jwt}")
+elsif user_input == '8'
+  jwt = ""
+  Unirest.clear_default_headers()
 end
+
 
 
 
