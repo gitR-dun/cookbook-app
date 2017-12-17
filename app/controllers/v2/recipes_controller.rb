@@ -28,7 +28,8 @@ class V2::RecipesController < ApplicationController
        title: params['title'],
        prep_time: params['prep_time'],
        directions: params['directions'],
-       image: params['image']
+       image: params['image'],
+       user_id: current_user.id
      )
     recipe.save
 

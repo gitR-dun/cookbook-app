@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  belongs_to :user
   # this is a place where we will be making instance methods
   # this is where ALL the methods for the recipe class go
   def as_json
