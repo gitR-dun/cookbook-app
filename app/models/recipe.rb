@@ -10,7 +10,8 @@ class Recipe < ApplicationRecord
       ingredients: ingredients_list,
       directions: directions_list,
       updated_at: day_month_date,
-      prep_time: prep_time_hrs_min
+      prep_time: prep_time_hrs_min,
+      image: image
     }
   end
 
