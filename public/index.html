@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="recipes.css">
-
+    <script src="index.js" defer></script>
     <title>My Recipes!</title>
   </head>
   <body>
@@ -51,6 +51,11 @@
       </nav>
       <br>
       <div class="row">
+
+      </div>
+      <br>
+
+      <template id="recipe-card">
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
@@ -64,139 +69,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title: "Raw Eggs"</h5>
-              <p class="card-text"><b>ingredients</b>: "Chicken"</p>
-              <p class="card-text"><b>directions</b>: "Squeeze the chicken"</p>
-              <p class="card-text"><b>prep time</b>: 1</p>
-              <p class="card-text"><b>chef</b>: "Laura Parsley"</p>
-              <p class="card-text"><b>image</b>: <img width="200px" src="http://swansonhealthcenter.com/wp-content/uploads/2011/07/Egg.jpg"></p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title: "Raw Eggs"</h5>
-              <p class="card-text"><b>ingredients</b>: "Chicken"</p>
-              <p class="card-text"><b>directions</b>: "Squeeze the chicken"</p>
-              <p class="card-text"><b>prep time</b>: 1</p>
-              <p class="card-text"><b>chef</b>: "Laura Parsley"</p>
-              <p class="card-text"><b>image</b>: <img width="200px" src="http://swansonhealthcenter.com/wp-content/uploads/2011/07/Egg.jpg"></p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title: "Raw Eggs"</h5>
-              <p class="card-text"><b>ingredients</b>: "Chicken"</p>
-              <p class="card-text"><b>directions</b>: "Squeeze the chicken"</p>
-              <p class="card-text"><b>prep time</b>: 1</p>
-              <p class="card-text"><b>chef</b>: "Laura Parsley"</p>
-              <p class="card-text"><b>image</b>: <img width="200px" src="http://swansonhealthcenter.com/wp-content/uploads/2011/07/Egg.jpg"></p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2>Here are all my recipes</h2>
-      <hr>
-      <p><b>title</b>: "Empty Sandwich",
-      <br>
-      <b>chef</b>: "Jay Wengrow",
-      <br>
-      <b>ingredients</b>: "Two slices of bread",
-      <br>
-      <b>directions</b>: "Place slices of bread next to each other.",
-      <br>
-      <b>image</b>: <img width="200px" src="http://www.phoenixisstrategic.com/wp-content/uploads/2013/05/blog-empty-sandwich.jpg">,
-      <br>
-      <b>prep time</b>: 72</p>
-      <hr>
-      <p><b>title</b>: "Licorice",
-      <br>
-      <b>chef</b>: "Jean Claude Packsone",
-      <br>
-      <b>ingredients</b>: "Licorice",
-      <br>
-      <b>directions</b>: "Buy licroice from store.",
-      <br>
-      <b>image</b>: <img width="200px" src="https://nccih.nih.gov/sites/nccam.nih.gov/files/herbs/licorice_root.jpg">,
-      <br>
-      <b>prep time</b>: 120</p>
-      <hr>
-      <p><b>title</b>: "Mud Pie",
-      <br>
-      <b>chef</b>: "Mark Richardson",
-      <br>
-      <b>ingredients</b>: "Flour,
-      <br>
-      <b>water</b>b>,
-      <br>
-      <b>mud</b>b>.",
-      <br>
-      <b>directions</b>: "Mix flour and water,
-      <br>
-      <b>add</b>b> mud,
-      <br>
-      <b>bake</b>b> at 350 degrees for 1 hour.",
-      <br>
-      <b>image</b>: <img width="200px" src="http://cdn-image.myrecipes.com/sites/default/files/styles/300x300/public/image/recipes/sl/05/12/mocha-mud-pie-sl-257949-x.jpg?itok=_ChocANl">,
-      <br>
-      <b>prep time</b>: 84</p>
-      <hr>
-      <p><b>title</b>: "Pizza",
-      <br>
-      <b>chef</b>: "The Swedish Chef",
-      <br>
-      <b>ingredients</b>: "Flour,
-      <br>
-      <b>water</b>b>,
-      <br>
-      <b>pepperoni</b>b>,
-      <br>
-      <b>cheese</b>b>",
-      <br>
-      <b>directions</b>: "Mix flour and water,
-      <br>
-      <b>add</b>b> cheese and pepperoni,
-      <br>
-      <b>shape</b>b> as a heart,
-      <br>
-      <b>bake</b>b> in oven on self-clean mode.",
-      <br>
-      <b>image</b>: <img width="200px" src="http://twopizzapals.weebly.com/uploads/2/3/6/0/23602608/1338890_orig.jpg">,
-      <br>
-      <b>prep time</b>: 455</p>
-      <hr>
-      <p><b>title</b>: "Corn on the cob",
-      <br>
-      <b>chef</b>: "Cornelius Vanderbilt",
-      <br>
-      <b>ingredients</b>: "Corn,
-      <br>
-      <b>cob</b>b>",
-      <br>
-      <b>directions</b>: "Place corn on the cob,
-      <br>
-      <b>grill</b>b> for 20 minutes,
-      <br>
-      <b>enjoy</b>b>!",
-      <br>
-      <b>image</b>: <img width="200px" src="http://www.scientificamerican.com/sciam/cache/file/59C0122F-509C-4FEE-99A67FC20C50CEF1.jpg">,
-      <br>
-      <b>prep time</b>: 2</p>
-      <hr>
-    </div>
+      </template>
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
