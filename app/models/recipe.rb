@@ -7,10 +7,10 @@ class Recipe < ApplicationRecord
       id: id,
       title: title,
       chef: chef,
-      ingredients: ingredients_list,
-      directions: directions_list,
-      updated_at: day_month_date,
-      prep_time: prep_time_hrs_min,
+      ingredients: ingredients,
+      directions: directions,
+      updated_at: updated_at,
+      prep_time: prep_time,
       image: image
     }
   end
