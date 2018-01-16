@@ -118,6 +118,7 @@ while true
     # make a post request to '/users'
     #  print out the response
   elsif user_input == '7'
+    # login
     p "type in your email"
     user_email = gets.chomp
     p "type in your password"

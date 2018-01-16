@@ -9,6 +9,8 @@ class V2::RecipesController < ApplicationController
     # p the_search_term
     recipes = Recipe.order(:id => :asc).where("title LIKE ?", "%#{the_search_term}%")
     # show the user all the recipes in my db
+    p "here is the current user"
+    p current_user
     render json: recipes.as_json
   end
 
