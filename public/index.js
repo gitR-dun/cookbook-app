@@ -1,4 +1,3 @@
-
 /* global Vue, VueRouter, axios */
 
 
@@ -39,6 +38,45 @@ var LoginPage = {
             this.errors = ["Invalid email or password."];
             this.email = "";
             this.password = "";
+          }.bind(this)
+        );
+    }
+  }
+};
+
+
+
+var NewRecipePage = {
+  template: "#new-recipe-page",
+  data: function() {
+    return {
+      ingredients: "",
+      prepTime: "",
+      directions: "",
+      title: "",
+      chef: "",
+      image: "",
+      errors: []
+    };
+  },
+  methods: {
+    addRecipe: function() {
+      var params = {
+        ingredients: this.ingredients,
+        prep_time: this.prepTime,
+        directions: this.directions,
+        title: this.title,
+        chef: this.chef,
+        image: this.image
+      };
+      axios
+        .post("/v2/recipes", params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
           }.bind(this)
         );
     }
@@ -101,7 +139,8 @@ var router = new VueRouter({
       { path: "/", component: HomePage },
       { path: "/signup", component: SignupPage },
       { path: "/login", component: LoginPage },
-      { path: "/logout", component: LogoutPage }
+      { path: "/logout", component: LogoutPage },
+      { path: "/recipes/new", component: NewRecipePage }
     ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
