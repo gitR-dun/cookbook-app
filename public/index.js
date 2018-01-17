@@ -59,6 +59,9 @@ var NewRecipePage = {
       errors: []
     };
   },
+  created: function() {
+    console.log('in new recipe');
+  },
   methods: {
     addRecipe: function() {
       var params = {
@@ -80,6 +83,46 @@ var NewRecipePage = {
           }.bind(this)
         );
     }
+  }
+};
+
+
+var EditRecipePage = {
+  template: "#edit-recipe-page",
+  data: function() {
+    return {
+      recipe: {},
+      errors: []
+    };
+  },
+  methods: {
+    editRecipe: function() {
+      var params = {
+        ingredients: this.recipe.ingredients,
+        prep_time: this.recipe.prepTime,
+        directions: this.recipe.directions,
+        title: this.recipe.title,
+        chef: this.recipe.chef,
+        image: this.recipe.image
+      };
+      console.log(params);
+      axios
+        .patch("/v2/recipes/" + this.$route.params.id, params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  },
+  created: function() {
+    console.log('running created');
+    axios.get('/v2/recipes/' + this.$route.params.id).then(function(response) {
+      this.recipe = response.data;
+    }.bind(this));
   }
 };
 
@@ -117,16 +160,17 @@ var SignupPage = {
   }
 };
 
-var HomePage = {
-  template: "#home-page",
+var ShowRecipePage = {
+  template: "#show-recipe-page",
   data: function() {
     return {
-      recipes: []
+      recipe: {}
     };
   },
   created: function() {
-    axios.get('/v2/recipes').then(function(response) {
-      this.recipes = response.data;
+    console.log('in show recipe');
+    axios.get('/v2/recipes/' + this.$route.params.id).then(function(response) {
+      this.recipe = response.data;
     }.bind(this));
   },
   methods: {},
@@ -140,12 +184,32 @@ var router = new VueRouter({
       { path: "/signup", component: SignupPage },
       { path: "/login", component: LoginPage },
       { path: "/logout", component: LogoutPage },
-      { path: "/recipes/new", component: NewRecipePage }
+      { path: "/recipes/:id/edit", component: EditRecipePage },
+      { path: "/recipes/new", component: NewRecipePage },
+      { path: "/recipes/:id", component: ShowRecipePage }
     ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
 });
+
+var HomePage = {
+  template: "#home-page",
+  data: function() {
+    return {
+      recipes: []
+    };
+  },
+  created: function() {
+    console.log('in home page');
+    axios.get('/v2/recipes').then(function(response) {
+      this.recipes = response.data;
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
+
 
 var app = new Vue({
   el: "#vue-app",

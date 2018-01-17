@@ -16,7 +16,7 @@ class V2::RecipesController < ApplicationController
 
   def show
     # go to params hash and get the id
-    the_id = params['id']
+    the_id = params[:id]
     # grab a particular recipe from the db
     recipe = Recipe.find_by(id: the_id)
     # show a particular recipe
@@ -49,8 +49,10 @@ class V2::RecipesController < ApplicationController
     recipe.directions = params[:directions] || recipe.directions
     recipe.image = params[:image] || recipe.image
     recipe.title = params[:title] || recipe.title
+    recipe.user_id = current_user.id
 
-    recipe.save
+
+    recipe.save!
     render json: recipe.as_json
   end
 

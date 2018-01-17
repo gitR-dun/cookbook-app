@@ -78,6 +78,29 @@
   </div>
 </template>
 
+<template id="show-recipe-page">
+  <div class="vue-component">
+      <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title title">Title: {{ recipe.title }}</h5>
+                <p class="card-text ingredients"><b>ingredients</b>: {{ recipe.ingredients }}</p>
+                <p class="card-text directions"><b>directions</b>: {{ recipe.directions}}</p>
+                <p class="card-text prep-time"><b>prep time</b>: {{ recipe.prep_time}}</p>
+                <p class="card-text chef"><b>chef</b>: {{ recipe.chef }}</p>
+                <p class="card-text"><b>image</b>:
+                  <img class="image" width="200px" v-bind:src="recipe.image">
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        <!-- make the loop in here -->
+      </div>
+  </div>
+</template>
+
 
 
 <template id="signup-page">
@@ -120,7 +143,7 @@
       </ul>
       <div class="form-group">
         <label>Ingredients:</label>
-        <input type="text" class="form-control" v-model="ingredients" value="theIngredients">
+        <input type="text" class="form-control" v-model="ingredients">
       </div>
       <div class="form-group">
         <label>Prep Time:</label>
@@ -143,6 +166,42 @@
         <input type="text" class="form-control" v-model="image">
       </div>
       <button class="btn btn-primary" v-on:click="addRecipe()">Make a new recipe!!!!</button>
+    </div>
+  </div>
+</template>
+
+<template id="edit-recipe-page">
+  <div class="vue-component">
+    <div class="container">
+      <h1>Edit recipe</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Ingredients:</label>
+        <input type="text" class="form-control" v-model="recipe.ingredients">
+      </div>
+      <div class="form-group">
+        <label>Prep Time:</label>
+        <input type="email" class="form-control" v-model="recipe.prepTime">
+      </div>
+      <div class="form-group">
+        <label>Directions:</label>
+        <input type="text" class="form-control" v-model="recipe.directions">
+      </div>
+      <div class="form-group">
+        <label>Title:</label>
+        <input type="text" class="form-control" v-model="recipe.title">
+      </div>
+      <div class="form-group">
+        <label>Chef:</label>
+        <input type="text" class="form-control" v-model="recipe.chef">
+      </div>
+      <div class="form-group">
+        <label>Image:</label>
+        <input type="text" class="form-control" v-model="recipe.image">
+      </div>
+      <button class="btn btn-primary" v-on:click="editRecipe()">Edit a recipe</button>
     </div>
   </div>
 </template>
