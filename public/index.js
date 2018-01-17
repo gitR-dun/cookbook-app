@@ -177,6 +177,23 @@ var ShowRecipePage = {
   computed: {}
 };
 
+var HomePage = {
+  template: "#home-page",
+  data: function() {
+    return {
+      recipes: []
+    };
+  },
+  created: function() {
+    console.log('in the home page');
+    axios.get('/v2/recipes').then(function(response) {
+      this.recipes = response.data;
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
+
 var router = new VueRouter({
   routes:
     [
@@ -192,23 +209,6 @@ var router = new VueRouter({
     return { x: 0, y: 0 };
   }
 });
-
-var HomePage = {
-  template: "#home-page",
-  data: function() {
-    return {
-      recipes: []
-    };
-  },
-  created: function() {
-    console.log('in home page');
-    axios.get('/v2/recipes').then(function(response) {
-      this.recipes = response.data;
-    }.bind(this));
-  },
-  methods: {},
-  computed: {}
-};
 
 
 var app = new Vue({
