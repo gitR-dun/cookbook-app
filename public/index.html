@@ -58,6 +58,7 @@
 <template id="home-page">
   <div class="vue-component">
     Search here:<input type="text" v-model="searchTerm">
+    Search chef here:<input type="text" v-model="searchChef">
       <div class="row">
           <div v-for="recipe in recipes" v-if="isValidRecipe(recipe)" class="col-sm-6">
             <div class="card">

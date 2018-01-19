@@ -182,6 +182,7 @@ var HomePage = {
   data: function() {
     return {
       searchTerm: "",
+      searchChef: "",
       recipes: []
     };
   },
@@ -194,7 +195,9 @@ var HomePage = {
   methods: {
     isValidRecipe: function(inputRecipe) {
       console.log('doing some work');
-      return inputRecipe.title.includes(this.searchTerm);
+      var validTitle = inputRecipe.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+      var validChef = inputRecipe.chef.toLowerCase().includes(this.searchChef.toLowerCase());
+      return validTitle && validChef;
     }
   },
   computed: {}
