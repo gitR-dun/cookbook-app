@@ -63,11 +63,13 @@
     <datalist id="recipes">
       <option v-for="recipe in recipes">{{ recipe.title }}</option>
     </datalist>
-
     Search chef here:<input type="text" v-model="searchChef">
+    <br>
+    <button v-on:click="sortByAttribute('title')">sort by Title</button>
+    <button v-on:click="sortByAttribute('chef')">sort by Chef</button>
       <div class="row">
         <transition-group name="bounce">
-          <div v-for="recipe in recipes" v-bind:key="recipe.id" v-if="isValidRecipe(recipe)" class="col-sm-6">
+          <div v-for="recipe in sortedRecipes" v-bind:key="recipe.id" v-if="isValidRecipe(recipe)" class="col-sm-6">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title title">Title: {{ recipe.title }}</h5>

@@ -7,7 +7,7 @@ class V2::RecipesController < ApplicationController
     # how to get user input
     the_search_term = params[:search_term]
     # p the_search_term
-    recipes = Recipe.order(:id => :asc).where("title LIKE ?", "%#{the_search_term}%")
+    recipes = Recipe.order(:id => :asc)
     # show the user all the recipes in my db
     p "here is the current user"
     p current_user

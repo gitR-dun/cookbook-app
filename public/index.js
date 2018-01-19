@@ -183,6 +183,7 @@ var HomePage = {
     return {
       searchTerm: "",
       searchChef: "",
+      sortAttribute: "chef",
       recipes: []
     };
   },
@@ -198,9 +199,19 @@ var HomePage = {
       var validTitle = inputRecipe.title.toLowerCase().includes(this.searchTerm.toLowerCase());
       var validChef = inputRecipe.chef.toLowerCase().includes(this.searchChef.toLowerCase());
       return validTitle && validChef;
+    },
+    sortByAttribute: function(inputAttribute) {
+      // take some variable and change it to title
+      this.sortAttribute = inputAttribute;
     }
   },
-  computed: {}
+  computed: {
+    sortedRecipes: function() {
+      return this.recipes.sort(function(recipe1, recipe2) {
+        return recipe1[this.sortAttribute].localeCompare(recipe2[this.sortAttribute]);
+      }.bind(this));
+    }
+  }
 };
 
 var router = new VueRouter({
