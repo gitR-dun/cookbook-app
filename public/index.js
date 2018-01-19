@@ -183,12 +183,12 @@ var HomePage = {
     return {
       searchTerm: "",
       searchChef: "",
-      sortAttribute: "chef",
-      recipes: []
+      sortAttribute: "title",
+      recipes: [],
+      sortAsc: true
     };
   },
   created: function() {
-    console.log('in the home page');
     axios.get('/v2/recipes').then(function(response) {
       this.recipes = response.data;
     }.bind(this));
@@ -202,14 +202,21 @@ var HomePage = {
     },
     sortByAttribute: function(inputAttribute) {
       // take some variable and change it to title
+      this.sortAsc = !this.sortAsc;
       this.sortAttribute = inputAttribute;
     }
   },
   computed: {
     sortedRecipes: function() {
-      return this.recipes.sort(function(recipe1, recipe2) {
-        return recipe1[this.sortAttribute].localeCompare(recipe2[this.sortAttribute]);
-      }.bind(this));
+      if (this.sortAsc) {
+        return this.recipes.sort(function(recipe1, recipe2) {
+          return recipe1[this.sortAttribute].localeCompare(recipe2[this.sortAttribute]);
+        }.bind(this));
+      } else {
+        return this.recipes.sort(function(recipe1, recipe2) {
+          return recipe2[this.sortAttribute].localeCompare(recipe1[this.sortAttribute]);
+        }.bind(this));
+      }
     }
   }
 };
