@@ -181,6 +181,7 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
+      searchTerm: "",
       recipes: []
     };
   },
@@ -190,7 +191,12 @@ var HomePage = {
       this.recipes = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    isValidRecipe: function(inputRecipe) {
+      console.log('doing some work');
+      return inputRecipe.title.includes(this.searchTerm);
+    }
+  },
   computed: {}
 };
 

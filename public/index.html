@@ -57,8 +57,9 @@
 
 <template id="home-page">
   <div class="vue-component">
+    Search here:<input type="text" v-model="searchTerm">
       <div class="row">
-          <div v-for="recipe in recipes" class="col-sm-6">
+          <div v-for="recipe in recipes" v-if="isValidRecipe(recipe)" class="col-sm-6">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title title">Title: {{ recipe.title }}</h5>
